@@ -66,16 +66,7 @@ public class EmployeeController {
 	public ResponseEntity<String> deleteEmployee(@PathVariable Integer eid) {
 		
 		
-//		boolean status = repo.existsById(eid);
-//		if(status) {
-//
-//			repo.deleteById(eid);
-//			
-//			return ResponseEntity.ok("employee deleted with id : "+eid);
-//		}
-//		else {
-//			return ResponseEntity.status(404).body("employee not found with id : "+eid);
-//		}
+
 		
 		
 		EmployeeEntity employeeEntity = repo.findById(eid).orElseThrow(() -> new RuntimeException("Employee not found with ID :"+eid));
@@ -86,6 +77,7 @@ public class EmployeeController {
 		
 		
 	}
+	
 	
 	
 	
