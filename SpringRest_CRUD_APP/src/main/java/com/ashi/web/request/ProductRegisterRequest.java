@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 //binding class 
-//we need to collect data from the FORM(HTML)
+//we need to collect data from the FORM(HTML) /JSON or XML
 @Data
 public class ProductRegisterRequest {
 

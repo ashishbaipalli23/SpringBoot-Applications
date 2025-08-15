@@ -16,12 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @RestControllerAdvice
 public class ProductExceptionHaddling {
 	
-	@ExceptionHandler(Exception.class)
-	public String globalExecption(Exception ex) {
-		
-		return "something is fishy :"+ex.getMessage();
-		
-	}
+	
 	@ExceptionHandler(exception = MethodArgumentNotValidException.class)
 	public ResponseEntity<ErrorResponse> productRegisterRequestHaddler(MethodArgumentNotValidException ex,HttpServletRequest req){
 		
@@ -41,6 +36,32 @@ public class ProductExceptionHaddling {
 		 
 
 	     return ResponseEntity.badRequest().body(errorBody);
+		
+	}
+	
+	@ExceptionHandler(exception = ResourceNotFoundException.class)
+	public ResponseEntity<ErrorResponse> productRegisterRequestHaddler(ResourceNotFoundException ex,HttpServletRequest req){
+		 
+		 ErrorResponse errorBody = ErrorResponse.builder()
+				                    .timeStamp(LocalDateTime.now())
+				                    .path(req.getRequestURI())
+				                    .method(req.getMethod())
+				                    .status(HttpStatus.BAD_REQUEST.value())
+				                    .errorMsg(ex.getMessage())
+				 					.build();
+		 
+
+	     return ResponseEntity.badRequest().body(errorBody);
+	}
+	
+	
+	
+	
+	
+	@ExceptionHandler(Exception.class)
+	public String globalExecption(Exception ex) {
+		
+		return "something is fishy :"+ex.getMessage();
 		
 	}
 
